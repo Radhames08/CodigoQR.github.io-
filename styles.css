@@ -7,53 +7,73 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #2020e2; /* Color de fondo claro */
+    background-color: #c9dbec; /* Fondo gris claro */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Ocupa toda la altura de la ventana */
+    height: 100vh;
     color: #333;
 }
 
-/* Contenedor del formulario */
-.section {
+/* Contenedor principal del formulario */
+.form-container {
     width: 100%;
     max-width: 400px;
-    background-color: #b80d0d;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
+}
+
+/* Estilos para el título */
+.form-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
 }
 
 /* Estilos para el formulario */
 form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 label {
-    margin-bottom: 5px;
+    text-align: left;
     font-weight: bold;
+    font-size: 14px;
+    color: #555;
 }
 
 input[type="text"],
 input[type="tel"],
 input[type="email"] {
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #22ec70;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus {
+    border-color: #007bff;
+}
+
+/* Estilos para el botón */
 button {
-    padding: 10px;
+    padding: 12px;
     background-color: #007bff;
-    color: rgb(180, 223, 27);
+    color: white;
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -61,4 +81,3 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-
