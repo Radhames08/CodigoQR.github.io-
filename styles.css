@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #c9dbec; /* Fondo gris claro */
+    background-color: #f7f8fa; /* Fondo gris claro */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,13 +62,13 @@ input[type="email"] {
 input[type="text"]:focus,
 input[type="tel"]:focus,
 input[type="email"]:focus {
-    border-color: #007bff;
+    border-color: #515457;
 }
 
 /* Estilos para el botón */
 button {
     padding: 12px;
-    background-color: #007bff;
+    background-color: #727375;
     color: white;
     border: none;
     border-radius: 5px;
@@ -79,5 +79,5 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #596b7e;
 }
