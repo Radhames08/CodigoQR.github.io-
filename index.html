@@ -3,79 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Contacto con QR</title>
+    <title>ContactoQR</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-    <style>
-        .section {
-            display: none;
-        }
-        .active {
-            display: block;
-        }
-    </style>
 </head>
 <body>
-    <!-- Sección del formulario de contacto -->
-    <div id="formSection" class="section active">
-        <h2>Formulario de Contacto</h2>
-        <form id="contactForm" onsubmit="enviarFormulario(event)">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" required><br><br>
+    <div class="form-container">
+        <h1>Formulario de Contacto</h1>
+        <form id="contactForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
 
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" required><br><br>
+            <label for="phone">Teléfono:</label>
+            <input type="tel" id="phone" name="phone" required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" required><br><br>
+            <input type="email" id="email" name="email" required>
 
-            <button type="submit">Enviar</button>
+            <button type="button" onclick="generateQR()">Enviar</button>
         </form>
     </div>
 
-    <!-- Sección del código QR -->
-    <div id="qrSection" class="section">
-        <h2>Código QR del Contacto</h2>
-        <canvas id="qrCanvas"></canvas>
-        <button onclick="volverAlFormulario()">Volver al formulario</button>
-    </div>
-
     <script>
-        function enviarFormulario(event) {
-            event.preventDefault(); // Evitar el envío tradicional del formulario
+        function generateQR() {
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
 
-            // Obtener datos del formulario
-            const nombre = document.getElementById('nombre').value;
-            const telefono = document.getElementById('telefono').value;
-            const email = document.getElementById('email').value;
+            if (name && phone && email) {
+                const contactInfo = {
+                    nombre: name,
+                    telefono: phone,
+                    email: email
+                };
 
-            // Convertir los datos de contacto en formato vCard para generar el QR
-            const vCard = `
-BEGIN:VCARD
-VERSION:3.0
-FN:${nombre}
-TEL:${telefono}
-EMAIL:${email}
-END:VCARD`;
-
-            // Mostrar la sección del QR y ocultar la del formulario
-            document.getElementById('formSection').classList.remove('active');
-            document.getElementById('qrSection').classList.add('active');
-
-            // Generar el código QR
-            const qr = new QRious({
-                element: document.getElementById('qrCanvas'),
-                size: 200,
-                value: vCard.trim()
-            });
-
-            // Limpiar el formulario después de enviar
-            document.getElementById('contactForm').reset();
-        }
-
-        function volverAlFormulario() {
-            // Mostrar la sección del formulario y ocultar la del QR
-            document.getElementById('qrSection').classList.remove('active');
-            document.getElementById('formSection').classList.add('active');
+                const contactJSON = JSON.stringify(contactInfo);
+                localStorage.setItem("contactData", contactJSON);
+                console.log("Datos guardados en localStorage:", contactJSON); // Verifica en la consola
+                window.location.href = "qr.html";
+            } else {
+                alert("Por favor, completa todos los campos.");
+            }
         }
     </script>
 </body>
